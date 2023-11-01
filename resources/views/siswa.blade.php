@@ -11,7 +11,7 @@
         </div>
     </div>
     <div class="container">
-        <h3 class="mt-4">Data Siswa
+        <h3 class="mt-4">STUDENT DATA
             <button type="button" class="btn btn-primary btn-md" mary btn-md data-bs-toggle="modal"
                 data-bs-target="#tambahSiswa">Tambah</button>
         </h3>
@@ -95,8 +95,8 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Foto Siswa:</label>
-                            {{-- <input class="form-control" type="file" name="foto"> --}}
-                            <input type="file" name="foto" id="foto" class="form-control">
+                            <img id="preview-image-before-upload" alt="preview foto" style="max-height: 200px;">
+                            <input class="form-control" type="file" name="foto" id="image">
                         </div>
                 </div>
                 <div class="modal-footer">
@@ -110,7 +110,7 @@
     <!-- Modal hapus -->
     @foreach ($data as $ds)
         <div class="modal fade" id="hapus{{ $ds->id }}" tabindex="-1" data-bs-backdrop="static"
-            data-bs-keyboard="false" aria- labelledby="exampleModalLabel" aria-hidden="true">
+            data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-sm">
                 <div class="modal-content">
                     <div class="modal-header bg-danger text-white">
@@ -141,11 +141,11 @@
                 <div class="modal-content">
                     <div class="modal-header bg-primary text-white">
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Simpan Data Siswa</h1>
-                        <button type="button" class="btn-close" data-bs- dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-					<form class="form" action="/{{ $ds->id }}" method="POST" enctype="multipart/form-data">
-						@csrf
-						@method('PUT')
+                    <form class="form" action="/{{ $ds->id }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
                     <div class="modal-body">
                             <div class="mb-3">
                                 <label class="form-label">NIS</label>
@@ -177,11 +177,15 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Foto Siswa:</label>
-                                <input class="form-control" type="file" name="foto" value="">
+                                <img id="preview-foto" alt="preview foto" style="max-height: 200px;">
+                                <input class="form-control" type="file" name="foto" id="imageUbah">
+
+                                {{-- <img id="preview-image-before-upload" alt="preview foto" style="max-height: 200px;">
+                            <input class="form-control" type="file" name="foto" id="image"> --}}
                             </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data- bs-dismiss="modal">Tutup</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                         <button type="submit" class="btn btn-primary">Simpan</button>
                     </div>
                     </form>
@@ -189,4 +193,42 @@
             </div>
         </div>
     @endforeach
+    {{-- <script src="{{asset('js/jquery-3.5.1.min.js')}}"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $(document).ready(function(e) {
+        $('#image').change(function() {
+                let reader = new FileReader();
+                reader.onload = (e) => {
+                    $('#preview-image-before-upload').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(this.files[0]);
+            }
+            )
+        });
+    </script>
+    <script>
+        $(document).ready(function(er) {
+        $('#imageUbah').change(function() {
+            let reader2 = new FileReader();
+            reader2.onload = (er) => {
+                $('#preview-foto').attr('src', er.target.result);
+            }
+            reader2.readAsDataURL(this.files[0]);
+        }
+        );
+    });
+    </script>
+    {{-- <script>
+
+        $(document).ready(function (er) {
+            $('#imageUbah').change(function() {
+                let reader2 = new FileReader();
+                reader2.onload = (er) => {
+                    $('#preview.foto').attr('src', er.target.result);
+                }
+                reader2.readAsDataURL(this.file[0]);
+            });
+        });
+    </script> --}}
 @endsection
