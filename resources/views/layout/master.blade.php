@@ -7,33 +7,7 @@
     <title>Data Siswa</title>
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script>
-
-    $(document).change(function (e) {
-
-        $('#image').change(function(){
-            let reader = new FileReader();
-            reader.onload = (e) => {
-                $('#preview-image-before-upload').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(this.file[0]);
-        });
-    });
-    </script>
-    <script>
-
-        $(document).ready(function (er) {
-            $('#imageUbah').change(function() {
-                let reader2 = new FileReader();
-                reader2.onload = (er) => {
-                    $('#preview.foto').attr('src', er.target.result);
-                }
-                reader2.readAsDataURL(this.file[0]);
-            });
-        });
-    </script>
+    <script src="{{ asset('js/jquery-3.7.1.js') }}"></script>
 </head>
 <body>
     <div class="main-wrapper">

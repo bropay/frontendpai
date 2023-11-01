@@ -177,11 +177,8 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Foto Siswa:</label>
-                                <img id="preview-foto" alt="preview foto" style="max-height: 200px;">
-                                <input class="form-control" type="file" name="foto" id="imageUbah">
-
-                                {{-- <img id="preview-image-before-upload" alt="preview foto" style="max-height: 200px;">
-                            <input class="form-control" type="file" name="foto" id="image"> --}}
+                                <img id="preview-gambar-ubah" alt="Preview Foto" style="max-height: 200px;">
+                                <input class="form-control" type="file" name="foto" id="gambarUbah" value="">
                             </div>
                     </div>
                     <div class="modal-footer">
@@ -193,42 +190,27 @@
             </div>
         </div>
     @endforeach
-    {{-- <script src="{{asset('js/jquery-3.5.1.min.js')}}"></script> --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script>
-        $(document).ready(function(e) {
-        $('#image').change(function() {
+
+    <script type="text/javascript">
+        $(document).ready(function (e) {
+            $('#image').change(function () {
                 let reader = new FileReader();
                 reader.onload = (e) => {
                     $('#preview-image-before-upload').attr('src', e.target.result);
-                }
+                };
                 reader.readAsDataURL(this.files[0]);
-            }
-            )
-        });
-    </script>
-    <script>
-        $(document).ready(function(er) {
-        $('#imageUbah').change(function() {
-            let reader2 = new FileReader();
-            reader2.onload = (er) => {
-                $('#preview-foto').attr('src', er.target.result);
-            }
-            reader2.readAsDataURL(this.files[0]);
-        }
-        );
-    });
-    </script>
-    {{-- <script>
-
-        $(document).ready(function (er) {
-            $('#imageUbah').change(function() {
-                let reader2 = new FileReader();
-                reader2.onload = (er) => {
-                    $('#preview.foto').attr('src', er.target.result);
-                }
-                reader2.readAsDataURL(this.file[0]);
             });
         });
-    </script> --}}
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function (e) {
+            $('#gambarUbah').change(function () {
+                let reader = new FileReader();
+                reader.onload = (e) => {
+                    $('#preview-gambar-ubah').attr('src', e.target.result);
+                };
+                reader.readAsDataURL(this.files[0]);
+            });
+        });
+    </script>
 @endsection
